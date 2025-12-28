@@ -1,0 +1,121 @@
+{
+  "name": "concept-tracker",
+  "displayName": "Concept Tracker",
+  "description": "Extract and track concepts from AI coding conversations (Claude Code, Cursor, Continue.dev)",
+  "version": "0.2.0",
+  "publisher": "concept-tracker",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Machine Learning",
+    "Education"
+  ],
+  "keywords": [
+    "ai",
+    "concepts",
+    "claude",
+    "cursor",
+    "continue",
+    "learning",
+    "knowledge"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "conceptTracker.openPanel",
+        "title": "Concept Tracker: Open Dashboard"
+      },
+      {
+        "command": "conceptTracker.scanWorkspace",
+        "title": "Concept Tracker: Scan Workspace for Concepts"
+      },
+      {
+        "command": "conceptTracker.setupIDE",
+        "title": "Concept Tracker: Setup IDE Integration"
+      },
+      {
+        "command": "conceptTracker.detectIDEs",
+        "title": "Concept Tracker: Detect Installed AI Tools"
+      },
+      {
+        "command": "conceptTracker.extractFromSelection",
+        "title": "Concept Tracker: Extract Concepts from Selection"
+      },
+      {
+        "command": "conceptTracker.refreshIDEStatus",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "conceptTracker.extractFromSelection",
+          "when": "editorHasSelection",
+          "group": "conceptTracker"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "conceptTracker.refreshIDEStatus",
+          "when": "view == conceptTracker.ideStatus",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Concept Tracker",
+      "properties": {
+        "conceptTracker.apiServerUrl": {
+          "type": "string",
+          "default": "http://localhost:3001",
+          "description": "Concept Tracker API server URL"
+        },
+        "conceptTracker.autoDetectIDEs": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically detect installed AI tools on startup"
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "concept-tracker",
+          "title": "Concept Tracker",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "concept-tracker": [
+        {
+          "type": "webview",
+          "id": "conceptTracker.dashboard",
+          "name": "Dashboard"
+        },
+        {
+          "id": "conceptTracker.ideStatus",
+          "name": "AI Tools Status"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0"
+  }
+}

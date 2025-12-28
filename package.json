@@ -1,0 +1,28 @@
+{
+  "name": "concept-tracker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MCP server that extracts technical concepts from AI coding conversations",
+  "workspaces": [
+    "mcp-server",
+    "dashboard"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "build:mcp": "npm run build --workspace=mcp-server",
+    "dev": "npm run dev --workspace=dashboard",
+    "dev:server": "npm run dev --workspace=mcp-server",
+    "dev:api": "npm run api --workspace=mcp-server",
+    "start": "npm run start --workspace=mcp-server",
+    "start:sse": "npm run start:sse --workspace=mcp-server",
+    "install-hook": "./scripts/install-hook.sh"
+  },
+  "keywords": [
+    "mcp",
+    "claude",
+    "concepts",
+    "knowledge-base"
+  ],
+  "author": "",
+  "license": "MIT"
+}
